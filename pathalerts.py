@@ -9,7 +9,7 @@ api = twitter.Api(consumer_key=os.environ['CONSUMER_KEY'],
                  access_token_secret=os.environ['ACCESS_TOKEN_SECRET'],
                  tweet_mode='extended',)
 
-search = api.GetUserTimeline(screen_name="PATHAlerts", count=20)
+
 token = os.environ['TOKEN']
 chat_id = os.environ['CHAT_ID']
 # Telegram bot settings
@@ -24,6 +24,7 @@ chat_id = chat_id
 # if Resumed, resuming etc, - Add green light icon to telegram message
 
 def check_tweets():
+    search = api.GetUserTimeline(screen_name="PATHAlerts", count=20)
     for tweet in search:
         if not str(tweet.id) in open("/log/log.txt").read():
             log = open("/log/log.txt", "a")
