@@ -1,0 +1,3 @@
+TwitterAPI
+python-twitter
+python-telegram-bot
