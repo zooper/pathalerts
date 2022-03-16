@@ -27,17 +27,18 @@ def check_tweets():
     search = api.GetUserTimeline(screen_name="PATHAlerts", count=20)
     for tweet in search:
         if not str(tweet.id) in open("/log/log.txt").read():
-            log = open("/log/log.txt", "a")
-            log.write(str(tweet.id) + "\n") 
-            msg = tweet.full_text
-            try:
-                bot.send_message(
-                        chat_id=chat_id,
-                        text = msg,
-                        parse_mode=telegram.ParseMode.HTML
-                        )
-            except Exception as e:
-                print("Error connecting to Telegram " + str(e))
+            if not "elevator" in str(tweet.full_text):
+                log = open("/log/log.txt", "a")
+                log.write(str(tweet.id) + "\n")
+                msg = tweet.full_text
+                try:
+                    bot.send_message(
+                            chat_id=chat_id,
+                            text = msg,
+                            parse_mode=telegram.ParseMode.HTML
+                            )
+                except Exception as e:
+                    print("Error connecting to Telegram " + str(e))
             
             print(msg)
 while True:
