@@ -40,7 +40,6 @@ def check_tweets():
                 except Exception as e:
                     print("Error connecting to Telegram " + str(e))
             
-            print(msg)
 while True:
     check_tweets()
     time.sleep(300)
